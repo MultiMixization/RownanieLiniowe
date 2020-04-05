@@ -3,39 +3,31 @@
 
 #include "rozmiar.h"
 #include <iostream>
+#include <cmath>
 
-
-/*
- *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
- *  i jakie ma glowne cechy.
- */
 class Wektor {
-  /*
-   *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
-   */
-  public:
-  /*
-   *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
-   */    
+  double tab[ROZMIAR];
+public:
+  Wektor();
+  Wektor(double xx, double yy, double zz);
+  Wektor(double *tablica);
+
+  double & operator [](int index);
+  
+  const Wektor operator +(Wektor &W2);
+  const Wektor operator -(Wektor &W2);
+  double operator *(Wektor &W2);
+  const Wektor operator *(double l2);
+
+  double dlugosc();
+
+  bool operator ==(Wektor &W2);
+  bool operator !=(Wektor &W2);
 };
 
-
-/*
- * To przeciazenie trzeba opisac. Co ono robi. Jaki format
- * danych akceptuje. Jakie jest znaczenie parametrow itd.
- * Szczegoly dotyczace zalecen realizacji opisow mozna
- * znalezc w pliku:
- *    ~bk/edu/kpo/zalecenia.txt 
- */
 std::istream& operator >> (std::istream &Strm, Wektor &Wek);
-
-/*
- * To przeciazenie trzeba opisac. Co ono robi. Jaki format
- * danych akceptuje. Jakie jest znaczenie parametrow itd.
- * Szczegoly dotyczace zalecen realizacji opisow mozna
- * znalezc w pliku:
- *    ~bk/edu/kpo/zalecenia.txt 
- */
 std::ostream& operator << (std::ostream &Strm, const Wektor &Wek);
+
+Wektor operator *(double l1, Wektor &W2);
 
 #endif
