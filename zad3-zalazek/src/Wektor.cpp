@@ -31,7 +31,7 @@ double & Wektor::operator [](int index)
   return tab[index];
 }
 
-const Wektor Wektor::operator +( Wektor &W2)
+Wektor Wektor::operator +(Wektor W2)
 {
   Wektor temp;
   temp[0]=tab[0]+W2[0];
@@ -40,7 +40,7 @@ const Wektor Wektor::operator +( Wektor &W2)
   return temp;
 }
 
-const Wektor Wektor::operator -(Wektor &W2)
+Wektor Wektor::operator -(Wektor W2)
 {
   Wektor temp;
   temp[0]=tab[0]-W2[0];
@@ -49,14 +49,14 @@ const Wektor Wektor::operator -(Wektor &W2)
   return temp;
 }
 
-double Wektor::operator *(Wektor &W2)
+double Wektor::operator *(Wektor W2)
 {
   double wynik;
   wynik=tab[0]*W2[0]+tab[1]*W2[1]+tab[2]*W2[2];
   return wynik;
 }
 
-const Wektor Wektor::operator *(double ls)
+Wektor Wektor::operator *(double ls)
 {
   Wektor temp;
   temp[0]=tab[0]*ls;

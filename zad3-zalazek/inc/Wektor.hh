@@ -14,10 +14,10 @@ public:
 
   double & operator [](int index);
   
-  const Wektor operator +(Wektor &W2);
-  const Wektor operator -(Wektor &W2);
-  double operator *(Wektor &W2);
-  const Wektor operator *(double l2);
+  Wektor operator +(Wektor W2);
+  Wektor operator -(Wektor W2);
+  double operator *(Wektor W2);
+  Wektor operator *(double l2);
 
   double dlugosc();
 

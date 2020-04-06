@@ -9,13 +9,14 @@ class Macierz {
   Wektor tab[ROZMIAR];
 public:
   Macierz();
-  //Macierz(/*9 double*/);
   Macierz(double tablica[]);
   Macierz(Wektor tablica[]);
   Macierz(Wektor A, Wektor B, Wektor C);
   Macierz(int jednostkowa);
 
-  const Wektor & operator *(const Wektor &B);
+  Wektor & operator [] (int index);
+
+  Macierz & operator () (int ind1, int ind2, int ind3);
 
   double wyznacznik();
 
@@ -30,12 +31,6 @@ public:
   const Macierz & transponuj() const;
 
   const Macierz & odwroc() const;
-
-  const Macierz & operator[] (int index);
-  //double & operator[] (int index);
-
-  const Macierz & operator() (int ind1, int ind2, int ind3);
-  //double & operator() (int ind1, ind2, ind3);
 };
 
 std::istream& operator >> (std::istream &Strm, Macierz &Mac);

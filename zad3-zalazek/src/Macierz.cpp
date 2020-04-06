@@ -47,20 +47,40 @@ Macierz::Macierz(int jednostkowa)
     }
 }
 
-const Wektor & operator *(const Wektor &B)
+Wektor & Macierz::operator [] (int index)
+{
+  return tab[index];
+}
+
+Macierz & Macierz::operator () (int ind1, int ind2, int ind3)
 {
 }
 
-double Wyznacznik()
+double Macierz::Wyznacznik() //Sarrus
 {
+  double wynik;
+  wynik=-tab[2][0]*tab[1][1]*tab[0][2]-tab[2][1]*tab[1][2]*tab[0][0]-tab[2][2]*tab[1][0]*tab[2][3]+tab[0][0]*tab[1][1]*tab[2][2]+tab[0][1]*tab[1][2]*tab[2][0]+tab[0][2]*tab[1][0]*tab[2][1];
+  return wynik;
 }
 
 const Macierz Macierz::operator +(const Macierz &B)
 {
+  Macierz wynik;
+  for(int i=0;i<ROZMIAR;i++)
+    {
+      wynik[i]=tab[i]+B[i];
+    }
+  return wynik;
 }
 
 const Macierz Macierz::operator -(const Macierz &B)
 {
+  Macierz wynik;
+  for(int i=0;i<ROZMIAR;i++)
+    {
+      wynik[i]=tab[i]-B[i];
+    }
+  return wynik;
 }
 
 const Macierz Macierz::operator *(const Macierz &B)
@@ -69,6 +89,12 @@ const Macierz Macierz::operator *(const Macierz &B)
 
 const Macierz Macierz::operator *(double B)
 {
+  Macierz wynik;
+  for(int i=0;i<ROZMIAR;i++)
+    {
+      wynik[i]=tab[i]*B;
+    }
+  return wynik;
 }
 
 bool Macierz::operator ==(const Macierz &W2) const
@@ -96,20 +122,6 @@ const Macierz & transponuj()
 const Macierz & odwroc()
 {
 }
-
-const Macierz & Macierz::operator[] (int index)
-{
-}
-//double & operator[] (int index)
-//{
-//}
-
-const Macierz & Macierz::operator() (int ind1, int ind2, int ind3)
-{
-}
-//double & operator() (int ind1, ind2, ind3)
-//{
-//}
 
 std::istream& operator >> (std::istream &Strm, Macierz &Mac)
 {
