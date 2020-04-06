@@ -40,10 +40,17 @@ Macierz::Macierz(Wektor A, Wektor B, Wektor C)
 
 Macierz::Macierz(int jednostkowa)
 {
-  Wektor jednostkowy(1,1,1);
+  if(jednostkowa!=1)
+    {
+      std::cerr << "Macierz jednostkowa z niezerowym argumentem." << std::endl;
+      exit(2);
+    }
   for(int i=0;i<ROZMIAR;i++)
     {
-      tab[i]=jednostkowy;
+      for(int j=0;j<3;j++)
+	{
+	  tab[i][j]=jednostkowa;
+	}
     }
 }
 
@@ -52,18 +59,14 @@ Wektor & Macierz::operator [] (int index)
   return tab[index];
 }
 
-Macierz & Macierz::operator () (int ind1, int ind2, int ind3)
-{
-}
-
-double Macierz::Wyznacznik() //Sarrus
+double Macierz::wyznacznik() //Sarrus
 {
   double wynik;
   wynik=-tab[2][0]*tab[1][1]*tab[0][2]-tab[2][1]*tab[1][2]*tab[0][0]-tab[2][2]*tab[1][0]*tab[2][3]+tab[0][0]*tab[1][1]*tab[2][2]+tab[0][1]*tab[1][2]*tab[2][0]+tab[0][2]*tab[1][0]*tab[2][1];
   return wynik;
 }
 
-const Macierz Macierz::operator +(const Macierz &B)
+Macierz Macierz::operator +(Macierz &B)
 {
   Macierz wynik;
   for(int i=0;i<ROZMIAR;i++)
@@ -73,7 +76,7 @@ const Macierz Macierz::operator +(const Macierz &B)
   return wynik;
 }
 
-const Macierz Macierz::operator -(const Macierz &B)
+Macierz Macierz::operator -(Macierz &B)
 {
   Macierz wynik;
   for(int i=0;i<ROZMIAR;i++)
@@ -83,11 +86,11 @@ const Macierz Macierz::operator -(const Macierz &B)
   return wynik;
 }
 
-const Macierz Macierz::operator *(const Macierz &B)
+Macierz Macierz::operator *(Macierz &B)
 {
 }
 
-const Macierz Macierz::operator *(double B)
+Macierz Macierz::operator *(double B)
 {
   Macierz wynik;
   for(int i=0;i<ROZMIAR;i++)
@@ -97,7 +100,7 @@ const Macierz Macierz::operator *(double B)
   return wynik;
 }
 
-bool Macierz::operator ==(const Macierz &W2) const
+bool Macierz::operator ==(Macierz &W2)
 {
   if(tab[0]==W2.tab[0] && tab[1]==W2.tab[1] && tab[2]==W2.tab[2])
     {
@@ -106,7 +109,7 @@ bool Macierz::operator ==(const Macierz &W2) const
   return 0;
 }
 
-bool Macierz::operator !=(const Macierz &W2) const
+bool Macierz::operator !=(Macierz &W2)
 {
   if(tab[0]!=W2.tab[1] || tab[1]!=W2.tab[1] || tab[2]!=W2.tab[2])
     {

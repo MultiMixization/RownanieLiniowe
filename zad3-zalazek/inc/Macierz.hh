@@ -16,17 +16,15 @@ public:
 
   Wektor & operator [] (int index);
 
-  Macierz & operator () (int ind1, int ind2, int ind3);
-
   double wyznacznik();
 
-  const Macierz operator +(const Macierz &B);
-  const Macierz operator -(const Macierz &B);
-  const Macierz operator *(const Macierz &B);
-  const Macierz operator *(double B);
+  Macierz operator +(Macierz &B);
+  Macierz operator -(Macierz &B);
+  Macierz operator *(Macierz &B);
+  Macierz operator *(double B);
 
-  bool operator ==(const Macierz &W2) const;
-  bool operator !=(const Macierz &W2) const;
+  bool operator ==(Macierz &W2);
+  bool operator !=(Macierz &W2);
 
   const Macierz & transponuj() const;
 
