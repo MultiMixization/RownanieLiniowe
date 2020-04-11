@@ -2,23 +2,35 @@
 
 Wektor::Wektor()
 {
-  tab[0]=0;
-  tab[1]=0;
-  tab[2]=0;
+  for(int i=0;i<ROZMIAR;i++)
+    {
+      this->tab[i]=0;
+    }
 }
 
 Wektor::Wektor(double xx, double yy, double zz)
 {
-  tab[0]=xx;
-  tab[1]=yy;
-  tab[2]=zz;
+  this->tab[0]=xx;
+  this->tab[1]=yy;
+  this->tab[2]=zz;
 }
 
 Wektor::Wektor(double *tablica)
 {
-  tab[0]=tablica[0];
-  tab[1]=tablica[1];
-  tab[2]=tablica[2];
+  for(int i=0;i<ROZMIAR;i++)
+    {
+	this->tab[i]=tablica[i];
+    }
+}
+
+const double & Wektor::operator [](int index) const
+{
+  if(index<0 || index >=ROZMIAR)
+    {
+      std::cerr << "Poza zakresem." << std::endl;
+      exit(1);
+    }
+  return tab[index];
 }
 
 double & Wektor::operator [](int index)
@@ -31,82 +43,116 @@ double & Wektor::operator [](int index)
   return tab[index];
 }
 
-Wektor Wektor::operator +(Wektor W2)
+Wektor Wektor::operator +(const Wektor & W2) const
 {
   Wektor temp;
-  temp[0]=tab[0]+W2[0];
-  temp[1]=tab[1]+W2[1];
-  temp[2]=tab[2]+W2[2];
+  for(int i=0;i<ROZMIAR;i++)
+    {
+      temp[i]=(*this)[i]+W2[i];
+    }
   return temp;
 }
 
-Wektor Wektor::operator -(Wektor W2)
+Wektor Wektor::operator -(const Wektor & W2) const
 {
   Wektor temp;
-  temp[0]=tab[0]-W2[0];
-  temp[1]=tab[1]-W2[1];
-  temp[2]=tab[2]-W2[2];
+  for(int i=0;i<ROZMIAR;i++)
+    {
+      temp[i]=(*this)[i]-W2[i];
+    }
   return temp;
 }
 
-double Wektor::operator *(Wektor W2)
+double Wektor::operator *(const Wektor & W2) const
 {
-  double wynik;
-  wynik=tab[0]*W2[0]+tab[1]*W2[1]+tab[2]*W2[2];
+  double wynik=0;
+  for(int i=0;i<ROZMIAR;i++)
+    {
+      wynik+=(*this)[i]*W2[i];
+    }
   return wynik;
 }
 
-Wektor Wektor::operator *(double ls)
+Wektor Wektor::operator *(const double & ls) const
 {
   Wektor temp;
-  temp[0]=tab[0]*ls;
-  temp[1]=tab[1]*ls;
-  temp[2]=tab[2]*ls;
+  for(int i=0;i<ROZMIAR;i++)
+    {
+      temp[i]=(*this)[i]*ls;
+    }
+  return temp;
+}
+
+Wektor Wektor::operator /(const double & ls) const
+{
+  Wektor temp;
+  for(int i=0;i<ROZMIAR;i++)
+    {
+      temp[i]=(*this)[i]/ls;
+    }
   return temp;
 }
 
 double Wektor::dlugosc()
 {
-  double dlg=0;
-  dlg=sqrt(tab[0]+tab[1]+tab[2]);
-  return dlg;
+  double sum=0;
+  for(int i=0;i<ROZMIAR;i++)
+    {
+      sum+=(*this)[i];
+    }
+  return sqrt(sum);
 }
 
-bool Wektor::operator ==(Wektor &W2)
+bool Wektor::operator ==(const Wektor &W2) const
 {
-  if(tab[0]==W2[0] && tab[1]==W2[1] && tab[2]==W2[2])
+  for(int i=0;i<ROZMIAR;i++)
     {
-      return 1;
+      if((*this)[i]!=W2[i])
+	{
+	  return 0;
+	}
     }
-  return 0;
+  return 1;
 }
 
-bool Wektor::operator !=(Wektor &W2)
+bool Wektor::operator !=(const Wektor &W2) const
 {
-  if(tab[0]!=W2[0] || tab[1]!=W2[1] || tab[2]!=W2[2])
+  return !((*this)==W2);
+}
+
+Wektor swap(int w1, int w2) const
+{
+  Wektor W(*this);
+  if(w1<0 || w1>=ROZMIAR || w2<0 || w2>=ROZMIAR)
     {
-      return 1;
+      std::cerr << "Poza zakresem." << std::endl;
+      exit(1);
     }
-  return 0;
+  double temp(W[w1]);
+  W[w1]=W[w2];
+  W[w2]=temp;
+  return W;
 }
 
 std::istream &operator >> (std::istream &Strm, Wektor &Wek)
 {
-  Strm >> Wek[0] >> Wek[1] >> Wek[2];
+  for(int i=0;i<ROZMIAR;i++)
+    {
+      Strm >> Wek[i];
+    }
   return Strm;
 }
 
 std::ostream &operator << (std::ostream &Strm, Wektor &Wek)
 {
-  Strm << Wek[0] << Wek[1] << Wek[2];
+  for(int i=0;i<ROZMIAR;i++)
+    {
+      Strm << Wek[i];
+    }
   return Strm;
 }
 
 Wektor operator *(double l1, Wektor &W2)
 {
-  Wektor temp;
-  temp[0]=W2[0]*l1;
-  temp[1]=W2[1]*l1;
-  temp[2]=W2[2]*l1;
-  return temp;
+  return W2*l1;
 }

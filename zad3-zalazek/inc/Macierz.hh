@@ -14,29 +14,30 @@ public:
   Macierz(Wektor A, Wektor B, Wektor C);
   Macierz(int jednostkowa);
 
-  Wektor & operator [] (int index);
+  const Wektor & operator [] (int index) const;
+  Wektor & operator [](int index);
+  
+  double wyznacznik()const;
+  double dopelnienie(int x, int y)const;
 
-  double wyznacznik();
+  Macierz operator +(const Macierz &B) const;
+  Macierz operator -(const Macierz &B)const;
+  Macierz operator *(const Macierz &B)const;
+  Macierz operator *(double B)const;
 
-  Macierz operator +(Macierz &B);
-  Macierz operator -(Macierz &B);
-  Macierz operator *(Macierz &B);
-  Macierz operator *(double B);
+  bool operator ==(const Macierz &W2)const;
+  bool operator !=(const Macierz &W2)const;
 
-  bool operator ==(Macierz &W2);
-  bool operator !=(Macierz &W2);
+  Macierz ZamienKolumny(int k1, int k2)const;
+  Macierz ZamienWiersze(int w1, int w2)const;
 
-  const Macierz & transponuj() const;
-
-  const Macierz & odwroc() const;
+  Macierz transponuj() const;
+  Macierz odwroc() const;
 };
 
 std::istream& operator >> (std::istream &Strm, Macierz &Mac);
 std::ostream& operator << (std::ostream &Strm, const Macierz &Mac);
 
-const Macierz & operator *(double l, const Macierz M);
-
-Macierz MacJednostkowa();
-
+Macierz operator *(double l, const Macierz M);
 
 #endif

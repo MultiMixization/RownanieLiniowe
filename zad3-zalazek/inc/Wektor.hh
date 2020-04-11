@@ -11,18 +11,23 @@ public:
   Wektor();
   Wektor(double xx, double yy, double zz);
   Wektor(double *tablica);
+  Wektor(const Wektor &W);
 
+  const double & operator [](int index) const;
   double & operator [](int index);
   
-  Wektor operator +(Wektor W2);
-  Wektor operator -(Wektor W2);
-  double operator *(Wektor W2);
-  Wektor operator *(double l2);
+  Wektor operator +(const Wektor &W2)const;
+  Wektor operator -(const Wektor &W2)const;
+  double operator *(const Wektor &W2)const;
+  Wektor operator *(const double &l2)const;
+  Wektor operator /(const double &l2)const;
 
   double dlugosc();
 
-  bool operator ==(Wektor &W2);
-  bool operator !=(Wektor &W2);
+  bool operator ==(const Wektor &W2)const;
+  bool operator !=(const Wektor &W2)const;
+
+  Wektor swap(int w1, int w2) const;
 };
 
 std::istream& operator >> (std::istream &Strm, Wektor &Wek);
