@@ -6,14 +6,20 @@
 #include "Wektor.hh"
 
 class UkladRownanLiniowych {
-  Macierz A;
-  Wektor B;
+  Macierz UklMac;
+  Wektor UklWek;
+  
 public:
-  UkladRownanLiniowych();
+  UkladRownanLiniowych(); //Zostawiam puste
   UkladRownanLiniowych(const Macierz & A, const Wektor & B);
-  const Wektor & ZwrocWektorWolny();
-  void ZmienWektorWolny(const Wektor & W);
-  const Wektor & Rozwiaz();
+
+  const Wektor & getwektor() const;
+  void setwektor(const Wektor & W);
+
+  const Macierz & getmacierz() const;
+  void setmacierz(const Macierz & M);
+  
+  Wektor Rozwiaz()const;
 };
 
 std::istream& operator >> (std::istream &Strm, UkladRownanLiniowych &UklRown);

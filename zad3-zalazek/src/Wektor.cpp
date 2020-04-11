@@ -120,7 +120,7 @@ bool Wektor::operator !=(const Wektor &W2) const
   return !((*this)==W2);
 }
 
-Wektor swap(int w1, int w2) const
+Wektor Wektor::swap(int w1, int w2) const
 {
   Wektor W(*this);
   if(w1<0 || w1>=ROZMIAR || w2<0 || w2>=ROZMIAR)
