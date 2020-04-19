@@ -2,6 +2,7 @@
 #define UKLADROWNANLINIOWYCH_HH
 
 #include <iostream>
+#include <fstream>
 #include "Macierz.hh"
 #include "Wektor.hh"
 
@@ -12,7 +13,7 @@ class UkladRownanLiniowych {
 public:
   UkladRownanLiniowych(){}; //Zostawiam puste
   UkladRownanLiniowych(const Macierz & A, const Wektor & B);
-
+  
   const Wektor & getwektor() const;
   void setwektor(const Wektor & W);
 

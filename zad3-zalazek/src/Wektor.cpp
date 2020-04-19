@@ -155,6 +155,10 @@ std::ostream &operator << (std::ostream &Strm, const Wektor &Wek)
 {
   for(int i=0;i<ROZMIAR;i++)
     {
+      if(Wek[i]>=0)
+	{
+	  Strm << " ";
+	}
       Strm << Wek[i] << " ";
     }
   return Strm;
