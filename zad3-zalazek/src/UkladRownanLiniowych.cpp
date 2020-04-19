@@ -34,17 +34,17 @@ Wektor UkladRownanLiniowych::Rozwiaz() const  //Na razie Crammer
   double W;
 
   W=UklM.wyznacznik();
-
+  
   for(int i=0;i<ROZMIAR;i++)
     {
-      UklM[i]=UklWek;    //podmienianie odpowiedniej linijki wektorem
-      Wynik[i]=UklM.wyznacznik()*1;       //Obliczanie wyznacznika podmienionej macierzy
+      UklM[i]=UklWek;    //podmienianie odpowiedniej kolumny wektorem
+      Wynik[i]=UklM.wyznacznik();       //Obliczanie wyznacznika podmienionej macierzy
       UklM[i]=UklMac[i];              //Przywracanie macierzy do stanu poczatkowego
     }
 
   if(W==0)
     {
-      std::cerr << "Zerowy wyznacznik macierzy" << std::endl;
+      std::cerr << "Wyznacznik zerowy. Brak rozwiazan." << std::endl;
       exit(5);
     }
   else

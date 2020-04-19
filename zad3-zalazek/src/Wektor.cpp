@@ -23,6 +23,14 @@ Wektor::Wektor(double *tablica)
     }
 }
 
+Wektor::Wektor(const Wektor &W)
+{
+  for(int i=0;i<ROZMIAR;i++)
+    {
+      this->tab[i]=W[i];
+    }
+}
+
 const double & Wektor::operator [](int index) const
 {
   if(index<0 || index >=ROZMIAR)
@@ -107,7 +115,7 @@ bool Wektor::operator ==(const Wektor &W2) const
 {
   for(int i=0;i<ROZMIAR;i++)
     {
-      if((*this)[i]!=W2[i])
+      if(abs((*this)[i]-W2[i])>0.00001)
 	{
 	  return 0;
 	}
@@ -143,11 +151,11 @@ std::istream &operator >> (std::istream &Strm, Wektor &Wek)
   return Strm;
 }
 
-std::ostream &operator << (std::ostream &Strm, Wektor &Wek)
+std::ostream &operator << (std::ostream &Strm, const Wektor &Wek)
 {
   for(int i=0;i<ROZMIAR;i++)
     {
-      Strm << Wek[i];
+      Strm << Wek[i] << " ";
     }
   return Strm;
 }

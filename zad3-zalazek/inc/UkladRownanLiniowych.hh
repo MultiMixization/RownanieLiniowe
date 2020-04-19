@@ -10,7 +10,7 @@ class UkladRownanLiniowych {
   Wektor UklWek;
   
 public:
-  UkladRownanLiniowych(); //Zostawiam puste
+  UkladRownanLiniowych(){}; //Zostawiam puste
   UkladRownanLiniowych(const Macierz & A, const Wektor & B);
 
   const Wektor & getwektor() const;

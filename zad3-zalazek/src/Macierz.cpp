@@ -4,7 +4,7 @@ Macierz::Macierz()
 {
   for(int i=0;i<ROZMIAR;i++)
     {
-      for(int j=0;j<ROZMIAR;i++)
+      for(int j=0;j<ROZMIAR;j++)
 	{
 	  this->tab[i][j]=0;
 	}
@@ -165,6 +165,19 @@ Macierz Macierz::operator *(const double B) const
   for(int i=0;i<ROZMIAR;i++)
     {
       wynik[i]=(*this)[i]*B;
+    }
+  return wynik;
+}
+
+Wektor Macierz::operator *(const Wektor &W) const
+{
+  Wektor wynik;
+  for(int i=0;i<ROZMIAR;i++)
+    {
+      for(int j=0;j<ROZMIAR;j++)
+	{
+	  wynik[i]=wynik[i]+(*this)[j][i]*W[j];
+	}
     }
   return wynik;
 }

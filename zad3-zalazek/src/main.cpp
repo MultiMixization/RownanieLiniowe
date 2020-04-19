@@ -3,22 +3,28 @@
 #include "Macierz.hh"
 #include "UkladRownanLiniowych.hh"
 
-
-
 using namespace std;
-
-/*
- * Tu definiujemy pozostale funkcje.
- * Lepiej jednak stworzyc dodatkowy modul
- * i tam je umiescic. Ten przyklad pokazuje
- * jedynie absolutne minimum.
- */
 
 
 int main()
 {
-  UkladRownanLiniowych   UklRown;   // To tylko przykladowe definicje zmiennej
-
+  UkladRownanLiniowych Uklad;
+  Wektor wynik;
+  Wektor blad;
   
-  cout << endl << " Start programu " << endl << endl;
+  cin >> Uklad;
+
+  if(!cin.good())
+    {
+      cerr << "Blad wczytywania." << endl;
+      exit(5);
+    }
+  
+  cout << "---Rozwiazanie metoda Cramera---" << endl;
+  //cout << "Wyznacznik glowny: " << Uklad.getmacierz().wyznacznik() << endl;
+  wynik=Uklad.Rozwiaz();
+  blad=Uklad.getmacierz()*wynik-Uklad.getwektor();
+  cout << "Rozwiazanie x, y, z: " << wynik << endl;
+  cout << "Wektor bledu: " << blad << endl;
+  cout << "Dlg wektoru bledu: " << blad.dlugosc() << endl;
 }

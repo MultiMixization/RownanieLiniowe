@@ -24,6 +24,7 @@ public:
   Macierz operator -(const Macierz &B)const;
   Macierz operator *(const Macierz &B)const;
   Macierz operator *(double B)const;
+  Wektor operator *(const Wektor &W)const;
 
   bool operator ==(const Macierz &W2)const;
   bool operator !=(const Macierz &W2)const;
